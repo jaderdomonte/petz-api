@@ -66,4 +66,5 @@ public class ClientEndpoint {
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
 }
