@@ -20,8 +20,4 @@ public class Pet implements Serializable {
 	private Long id;
 
 	private String name;
-	
-//	@JsonIgnore
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	private Client client;
 }
