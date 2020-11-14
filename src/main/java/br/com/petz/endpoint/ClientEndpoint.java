@@ -1,7 +1,5 @@
 package br.com.petz.endpoint;
 
-import java.util.NoSuchElementException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -39,7 +37,7 @@ public class ClientEndpoint {
 		
 		try {
 			client = service.findById(id);
-		} catch (NoSuchElementException e) {
+		} catch (ResourceNotFoundException e) {
 			throw new ResourceNotFoundException(MessageErrorEnum.CLIENT_NOT_FOUND_BY_ID.getMessage() + id);
 		}
 				
