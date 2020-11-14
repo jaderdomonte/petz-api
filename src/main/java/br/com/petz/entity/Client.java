@@ -25,7 +25,7 @@ public class Client implements Serializable {
 	
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "client_id")
 	private List<Pet> pets;
 }
