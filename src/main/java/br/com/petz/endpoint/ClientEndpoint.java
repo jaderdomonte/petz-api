@@ -21,7 +21,7 @@ import br.com.petz.service.ClientService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "client")
+@Api(value = "clients")
 @RestController
 @RequestMapping("v1/clients")
 public class ClientEndpoint {
