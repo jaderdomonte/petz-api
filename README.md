@@ -6,11 +6,11 @@ API de Clientes para o processo seletivo da Petz.
 Esta API dispõe dos 5 serviços a seguir:
 
 Listar todos os Clientes e seus Pets.
-Salvar Cliente e seus Pets.
-Atualizar Cliente.
-Apagar Cliente e seus Pets.
-Retornar Cliente e seus Pets por ID do Cliente.
-A documentação completa dos serviços estará disponível em https://petz-api-app.herokuapp.com/swagger-ui.html.
+- Salvar Cliente e seus Pets.
+- Atualizar Cliente.
+- Apagar Cliente e seus Pets.
+- Retornar Cliente e seus Pets por ID do Cliente.
+- A documentação completa dos serviços estará disponível em https://petz-api-app.herokuapp.com/swagger-ui.html.
 
 Abaixo seguem as ferramentas utilizadas no projeto:
 
