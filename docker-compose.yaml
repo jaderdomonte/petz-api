@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  mysql-service:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=petzdb
+      - MYSQL_USER=jader
+      - MYSQL_PASSWORD=admin
+    ports:
+      - 3306:3306
+    volumes:
+      - D:\mysql\data:/var/lib/mysql
+    networks:
+      - petz-compose-network
+    container_name: mysql-petz-api-service
+
+  adminer-service:
+    image: adminer
+    ports:
+      - 8090:8080
+    networks:
+      - petz-compose-network
+    container_name: adminer-service
+    
+  postgres-service:
+    image: postgres
+    volumes:
+      - D:\postgres\data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=petz
+      - POSTGRES_USER=petz
+      - POSTGRES_DB=petzdb
+    ports:
+      - 5433:5432    
+    networks:
+      - petz-compose-network
+    container_name: postgres-service
+    
+  pgadmin-service:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=jaderdomonte@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin
+    ports: 
+      - 15432:80
+    networks:
+      - petz-compose-network
+    container_name: pgadmin-service
+  
+  petz-api-service:
+    build: .
+    image: petz-api
+    environment:
+     - DATABASE_URL=postgres://petz:petz@postgres-service:5432/petzdb
+    ports:
+      - 8080:8080
+    networks: 
+      - petz-compose-network
+#    depends_on:
+#      - postgres-service
+    container_name: petz-api-service  
+    
+networks:
+  petz-compose-network:
+    name: petz-compose-network
+    driver: bridge
