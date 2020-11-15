@@ -29,13 +29,13 @@ public class ClientEndpoint {
 	@Autowired
 	private ClientService service;
 
-	@ApiOperation(value = "Listar todos os Clientes", response = Client[].class)
+	@ApiOperation(value = "Listar todos os Clientes e seus Pets", response = Client[].class)
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> listAll(){
 		return new ResponseEntity<>(service.listAll(), HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "Retornar Cliente por ID", response = Client.class)
+	@ApiOperation(value = "Retornar Cliente e seus Pets por ID do Cliente.", response = Client.class)
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> getClientById(@PathVariable("id") Long id){
 		Client client = null;
@@ -49,19 +49,19 @@ public class ClientEndpoint {
 		return new ResponseEntity<>(client, HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "Salvar Cliente", response = Client.class)
+	@ApiOperation(value = "Salvar Cliente e seus Pets.", response = Client.class)
 	@PostMapping
 	public ResponseEntity<?> save(@RequestBody Client client){
 		return new ResponseEntity<>(service.save(client), HttpStatus.CREATED);
 	}
 	
-	@ApiOperation(value = "Atualizar Cliente", response = Client.class)
+	@ApiOperation(value = "Atualizar Cliente.", response = Client.class)
 	@PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody Client client){
 		return new ResponseEntity<>(service.save(client), HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "Deletar Cliente", response = Client.class)
+	@ApiOperation(value = "Apagar Cliente e seus Pets.", response = Client.class)
 	@DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> deleteById(@PathVariable("id") Long id){
 		try {
