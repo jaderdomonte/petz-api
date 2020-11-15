@@ -24,7 +24,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 
 	private ApiInfo metaData() {
 		return new ApiInfoBuilder().title("Petz API")
-								   .description("\"API para processo seletivo de dev Java da Petz\"")
+								   .description("\"API para processo seletivo da Petz\"")
 								   .version("1.0.0")
 								   .build();
 	}
