@@ -1,29 +1,6 @@
 version: '3.8'
 
-services:
-  mysql-service:
-    image: mysql:5.7
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=petzdb
-      - MYSQL_USER=jader
-      - MYSQL_PASSWORD=admin
-    ports:
-      - 3306:3306
-    volumes:
-      - D:\mysql\data:/var/lib/mysql
-    networks:
-      - petz-compose-network
-    container_name: mysql-petz-api-service
-
-  adminer-service:
-    image: adminer
-    ports:
-      - 8090:8080
-    networks:
-      - petz-compose-network
-    container_name: adminer-service
-    
+services:    
   postgres-service:
     image: postgres
     volumes:
@@ -58,8 +35,6 @@ services:
       - 8080:8080
     networks: 
       - petz-compose-network
-#    depends_on:
-#      - postgres-service
     container_name: petz-api-service  
     
 networks:
