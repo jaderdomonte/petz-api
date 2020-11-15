@@ -15,17 +15,17 @@ import javax.persistence.OneToMany;
 import lombok.Data;
 
 @Data
-@Entity(name="client")
+@Entity(name = "client")
 public class Client implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String name;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "client_id")
 	private List<Pet> pets;
