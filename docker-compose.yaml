@@ -4,7 +4,7 @@ services:
   postgres-service:
     image: postgres
     volumes:
-      - D:\postgres\data:/var/lib/postgresql/data
+      - C:\postgres\data:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=petz
       - POSTGRES_USER=petz
