@@ -4,16 +4,15 @@
 API de Clientes para o processo seletivo da Petz.
 
 Esta API dispõe dos 5 serviços a seguir:
-
-Listar todos os Clientes e seus Pets.
+- Listar todos os Clientes e seus Pets.
 - Salvar Cliente e seus Pets.
 - Atualizar Cliente.
 - Apagar Cliente e seus Pets.
 - Retornar Cliente e seus Pets por ID do Cliente.
-- A documentação completa dos serviços estará disponível em https://petz-api-app.herokuapp.com/swagger-ui.html.
+
+A documentação completa dos serviços estará disponível em https://petz-api-app.herokuapp.com/swagger-ui.html e o swagger em https://petz-api-app.herokuapp.com/v2/api-docs
 
 Abaixo seguem as ferramentas utilizadas no projeto:
-
 - Apache Maven 3.6.0
 - Project Lombok 1.18.16
 - Spring Boot 2.3.0
