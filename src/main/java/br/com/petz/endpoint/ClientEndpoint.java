@@ -29,14 +29,14 @@ public class ClientEndpoint {
 	@Autowired
 	private ClientService service;
 
-	@ApiOperation(value = "Listar todos os Clientes e seus Pets", response = Client[].class)
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Listar todos os Clientes e seus Pets", response = Client[].class, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping
 	public ResponseEntity<?> listAll(){
 		return new ResponseEntity<>(service.listAll(), HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "Retornar Cliente e seus Pets por ID do Cliente.", response = Client.class)
-	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Retornar Cliente e seus Pets por ID do Cliente.", response = Client.class, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/{id}")
 	public ResponseEntity<?> getClientById(@PathVariable("id") Long id){
 		Client client = null;
 		
@@ -49,7 +49,7 @@ public class ClientEndpoint {
 		return new ResponseEntity<>(client, HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "Salvar Cliente e seus Pets.", response = Client.class)
+	@ApiOperation(value = "Salvar Cliente e seus Pets.", response = Client.class, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@PostMapping
 	public ResponseEntity<?> save(@RequestBody Client client){
 		return new ResponseEntity<>(service.save(client), HttpStatus.CREATED);
@@ -61,8 +61,8 @@ public class ClientEndpoint {
 		return new ResponseEntity<>(service.save(client), HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "Apagar Cliente e seus Pets.", response = Client.class)
-	@DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Apagar Cliente e seus Pets.", response = Client.class, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<?> deleteById(@PathVariable("id") Long id){
 		try {
 			service.delete(id);

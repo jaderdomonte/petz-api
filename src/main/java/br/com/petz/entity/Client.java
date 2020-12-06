@@ -9,13 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
 
 @Data
-@Entity(name = "client")
+@Entity
 public class Client implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -26,7 +25,8 @@ public class Client implements Serializable {
 
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "client_id")
+	@OneToMany(cascade = CascadeType.PERSIST, 
+				fetch = FetchType.EAGER, 
+				orphanRemoval = true)
 	private List<Pet> pets;
 }

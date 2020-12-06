@@ -1,19 +1,19 @@
-version: '3.8'
+version: '3'
+
+volumes:
+  dados:
 
 services:    
-  postgres-service:
-    image: postgres
+  petz-db:
+    image: postgres:13.1
     volumes:
-      - C:\postgres\data:/var/lib/postgresql/data
+      - dados:/var/lib/postgresql/data
+#      - ./src/main/resources/postgres/data/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRES_PASSWORD=petz
-      - POSTGRES_USER=petz
       - POSTGRES_DB=petzdb
-    ports:
-      - 5433:5432    
     networks:
       - petz-compose-network
-    container_name: postgres-service
     
   pgadmin-service:
     image: dpage/pgadmin4
@@ -24,18 +24,18 @@ services:
       - 15432:80
     networks:
       - petz-compose-network
-    container_name: pgadmin-service
   
-  petz-api-service:
+  petz-api:
     build: .
-    image: petz-api
+    image: petz-api:latest
     environment:
-     - DATABASE_URL=postgres://petz:petz@postgres-service:5432/petzdb
+     - DATABASE_URL=postgres://postgres:petz@petz-db:5432/petzdb
     ports:
-      - 8080:8080
+      - 8090:8080
     networks: 
       - petz-compose-network
-    container_name: petz-api-service  
+    depends_on:
+      - petz-db
     
 networks:
   petz-compose-network:
