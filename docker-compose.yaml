@@ -8,7 +8,6 @@ services:
     image: postgres:13.1
     volumes:
       - dados:/var/lib/postgresql/data
-#      - ./src/main/resources/postgres/data/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRES_PASSWORD=petz
       - POSTGRES_DB=petzdb

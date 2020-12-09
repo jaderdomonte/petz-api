@@ -58,7 +58,11 @@ public class ClientEndpoint {
 	@ApiOperation(value = "Atualizar Cliente.", response = Client.class)
 	@PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody Client client){
-		return new ResponseEntity<>(service.save(client), HttpStatus.OK);
+		try {
+			return new ResponseEntity<>(service.save(client), HttpStatus.OK);
+		} catch (ResourceNotFoundException e) {
+			throw new ResourceNotFoundException(MessageErrorEnum.CLIENT_NOT_FOUND_BY_ID.getMessage() + client.getId());
+		}
 	}
 	
 	@ApiOperation(value = "Apagar Cliente e seus Pets.", response = Client.class, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

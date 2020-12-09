@@ -2,6 +2,8 @@ package br.com.petz.service;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +21,15 @@ public class ClientService {
 		return repository.findById(id).orElseThrow(ResourceNotFoundException::new);
 	}
 
-	public Client save(Client client) {
-		return this.repository.save(client);
+	public Client save(Client client) throws ResourceNotFoundException {
+		Client clientSaved = new Client();
+		try {
+			clientSaved = this.repository.save(client);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException();
+		}
+		
+		return clientSaved;
 	}
 	
 	public List<Client> listAll(){
